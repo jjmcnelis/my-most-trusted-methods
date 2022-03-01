@@ -46,7 +46,7 @@ def get_urls_common(x, token: str=None):
     ShortName = x.name[1] if len(x.name)==2 else x.name
     return {'web': f"https://podaac.jpl.nasa.gov/dataset/{ShortName}",
             'test': f"https://podaac-test.jpl.nasa.gov/dataset/{ShortName}",
-            'mmt': f"https://cmr.earthdata.nasa.gov/collections/{x['concept-id']}",
+            'mmt': f"https://mmt.earthdata.nasa.gov/collections/{x['concept-id']}",
             'ummc': f"https://cmr.earthdata.nasa.gov/search/collections.umm_json?concept-id={x['concept-id']}&token={token}",
             'ummg': f"https://cmr.earthdata.nasa.gov/search/granules.umm_json?collection_concept_id={x['concept-id']}&token={token}",
             'browse': f"https://cmr.earthdata.nasa.gov/virtual-directory/collections/{x['concept-id']}",
