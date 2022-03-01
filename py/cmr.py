@@ -42,12 +42,6 @@ def get_tables(names: list=None, token: str=None):
         .tolist())
     return collections, cUrls, granules, gUrls
 
-def check_association(concept_id: str, coll: pd.DataFrame):
-    concept_type = {'S': 'services', 'T': 'tools', 'V': 'variables'}.get(concept_id[0])
-    collections = coll.copy()
-    collections['associations'] = coll.associations.apply(lambda x: x if type(x) is dict else {})
-    return collections.associations.apply(lambda x: (concept_id in x[concept_type]) if concept_type in x else False)
-
 def get_urls_common(x, token: str=None):
     ShortName = x.name[1] if len(x.name)==2 else x.name
     return {'web': f"https://podaac.jpl.nasa.gov/dataset/{ShortName}",
