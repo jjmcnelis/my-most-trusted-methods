@@ -42,7 +42,7 @@ def get_tables(names: list=None, token: str=None):
         .tolist())
     return collections, cUrls, granules, gUrls
 
-def check_association(concept_id: str):
+def check_association(concept_id: str, coll: pd.DataFrame):
     concept_type = {'S': 'services', 'T': 'tools', 'V': 'variables'}.get(concept_id[0])
     collections = coll.copy()
     collections['associations'] = coll.associations.apply(lambda x: x if type(x) is dict else {})
