@@ -16,7 +16,8 @@ tqdm.pandas()
 #         !wget --quiet --continue --output-document $target $source
 #     return target
 
-def download(source: str, target: str):
+def download(source: str):
+    target = os.path.join(data, os.path.basename(source.split("?")[0]))
     with requests.get(source, stream=True) as remote, open(target, 'wb') as local:
         if remote.status_code // 100 == 2: 
             for chunk in remote.iter_content(chunk_size=1024):
