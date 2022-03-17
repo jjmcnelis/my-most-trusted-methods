@@ -10,11 +10,7 @@ from io import StringIO
 from tqdm import tqdm
 tqdm.pandas()
 
-# def download(source: str):
-#     target = os.path.join(data, os.path.basename(source.split("?")[0]))
-#     if not os.path.isfile(target):
-#         !wget --quiet --continue --output-document $target $source
-#     return target
+data = "data"
 
 def download(source: str):
     target = os.path.join(data, os.path.basename(source.split("?")[0]))
