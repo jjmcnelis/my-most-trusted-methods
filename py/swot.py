@@ -12,13 +12,14 @@ tqdm.pandas()
 
 data = "data"
 
-def download(source: str):
+def download(source: str, force: bool=False):
     target = os.path.join(data, os.path.basename(source.split("?")[0]))
-    with requests.get(source, stream=True) as remote, open(target, 'wb') as local:
-        if remote.status_code // 100 == 2: 
-            for chunk in remote.iter_content(chunk_size=1024):
-                if chunk:
-                    local.write(chunk)
+    if force or not os.path.isfile(target):
+        with requests.get(source, stream=True) as remote, open(target, 'wb') as local:
+            if remote.status_code // 100 == 2: 
+                for chunk in remote.iter_content(chunk_size=1024):
+                    if chunk:
+                        local.write(chunk)
 
 def download_all(urls: list, max_workers: int=12):
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
