@@ -20,6 +20,7 @@ def download(source: str, force: bool=False):
                 for chunk in remote.iter_content(chunk_size=1024):
                     if chunk:
                         local.write(chunk)
+    return target
 
 def download_all(urls: list, max_workers: int=12):
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
