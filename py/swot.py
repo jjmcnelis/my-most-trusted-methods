@@ -27,7 +27,7 @@ def download_all(urls: list, max_workers: int=12):
         workers = pool.map(download, urls)
         return list(tqdm(workers, total=len(urls)))
 
-def granule_query_example(ccid: str, cmr: str="cmr.earthdata.nasa.gov", **kwargs):
+def nadir_query_example(ccid: str, cmr: str="cmr.earthdata.nasa.gov", **kwargs):
     GranuleUR = {
         'cycle':      "???",         # 3 digit cycle
         'pass':       "???",         # 3 digit pass
