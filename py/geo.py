@@ -1,5 +1,6 @@
 from math import radians, cos, sin, asin, sqrt
 
+
 def haversine_distance(lon1: float, lat1: float, lon2: float, lat2: float, a: float=6378137.):
     """https://en.wikipedia.org/wiki/Haversine_formula
     :param lon1: Longitude of the first xy coordinate pair
@@ -14,3 +15,19 @@ def haversine_distance(lon1: float, lat1: float, lon2: float, lat2: float, a: fl
     haversine = sin((lat2-lat1)/2)**2 + cos(lat1) * cos(lat2) * sin((lon2-lon1)/2)**2
     ihaversine = 2 * asin(sqrt(haversine))
     return(ihaversine * a)
+
+
+def geojson_linestring_feature_collection(longitudes: list, latitudes: list, **kwargs):
+    return {
+		"type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [list(c) for c in zip(longitudes, latitudes)]
+                },
+                "properties": kwargs
+            }
+        ]
+    }
